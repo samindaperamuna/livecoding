@@ -39,4 +39,12 @@ public class BinarySearchExample {
 			System.err.println(e.getStackTrace());
 		}
 	}
+	
+	private int search(int number) {
+		int left = 1;
+		int right;
+		int mid;
+		
+		while(left < right)
+	}
 }
