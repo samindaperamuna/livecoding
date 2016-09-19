@@ -7,7 +7,7 @@ import java.util.Scanner;
 import org.apache.commons.lang3.math.NumberUtils;
 
 public class BinarySearchExample {
-	private static final String CLOSE_FLAGS = "Q QUIT EXIT";
+	private static final String CLOSE_FLAGS = "Q";
 	private static final int N = 100;
 	private static final File FILE_IN = new File("in");
 
@@ -26,11 +26,16 @@ public class BinarySearchExample {
 		
 		try (Scanner in = new Scanner(System.in)) {
 			String feed = "";
-			while (!CLOSE_FLAGS.contains(feed.toUpperCase())) {
+			while (!CLOSE_FLAGS.equals(feed.toUpperCase())) {
 				feed = in.nextLine();
 				
 				if (NumberUtils.isNumber(feed)) {
-					
+					int index = binarySearch(Integer.parseInt(feed));
+					if (index >= 0) {
+						System.out.println("The number is at : " + index + "\n");
+					} else {
+						System.out.println("The number is not in this array\n");
+					}
 				} else {
 					System.out.println("Please enter a number to search for.");
 				}
@@ -40,11 +45,25 @@ public class BinarySearchExample {
 		}
 	}
 	
-	private int search(int number) {
+	/*
+	 * Complexity of binary search is log(2) N.
+	 */
+	private static int binarySearch(int number) {
 		int left = 1;
-		int right;
-		int mid;
+		int right = a.length;
 		
-		while(left < right)
+		while(left <= right) {
+			int mid = (left + right) / 2 ;
+			
+			if (number == a[mid]) {
+				return mid;
+			} else if (number < a[mid]){
+				right = mid - 1;
+			} else {
+				left = mid + 1; 
+			}
+		} 
+		
+		return -1;
 	}
 }
