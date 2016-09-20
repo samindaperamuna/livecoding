@@ -12,9 +12,9 @@ import java.util.Scanner;
  */
 public class CountingSortExample {
 	// Number of elements
-	private static final int n = 100;
+	private static final int N = (int)Math.pow(10, 9);
 	// Appearance array
-	private static final int a[] = new int[n];
+	private static int a[] = new int[N];
 
 	public static void main(String[] args) {
 		File fileIn = new File("in");
@@ -23,7 +23,7 @@ public class CountingSortExample {
 		int max = 0;
 
 		try (Scanner in = new Scanner(fileIn);) {
-			for (int i = 0; i < n; i++) {
+			for (int i = 0; i < N; i++) {
 				int num = in.nextInt();
 				++a[num];
 				max = Math.max(max, num);
